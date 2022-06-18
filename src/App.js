@@ -1,6 +1,6 @@
 import "./App.css";
 import { Container, Navbar, Nav } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import data from "./data.js";
 import { Routes, Route } from "react-router-dom";
 import Detail from "./pages/detail.js";
@@ -10,6 +10,11 @@ import Table from "./pages/Cart"
 
 function App() {
   const [shoes, setShoes] = useState(data);
+
+  useEffect(() => {
+    localStorage.setItem('watched', JSON.stringify([]))
+  }, [])
+
 
   return (
     <div className="App">
@@ -28,7 +33,11 @@ function App() {
         <Route
           path="/"
           element={<>
-            <div className="shoesInfoImg"> </div>
+            <div className="shoesInfoImg">
+              <div className="resentView">
+                <div className="resentView-text">as</div>
+              </div>
+            </div>
             <div className="shoesList">
               {shoes.map((name, i) => {
                 return (
@@ -37,6 +46,7 @@ function App() {
                       <img
                         onClick={() => {
                           window.location.href = "/detail/" + i;
+                          localStorage.setItem('watched', JSON.stringify([shoes[i].id]))
                         }}
                         className="shoesImg"
                         src={name.source}
@@ -54,7 +64,7 @@ function App() {
             <button
               onClick={() => {
                 let count;
-                if (count == 0) {
+                if (count === 0) {
                   axios
                     .get("https://codingapple1.github.io/shop/data2.json")
                     .then((result) => {
@@ -63,7 +73,7 @@ function App() {
                       count++;
                       console.log(count);
                     });
-                } else if (count == 1) {
+                } else if (count === 1) {
                   axios
                     .get("https://codingapple1.github.io/shop/data3.json")
                     .then((result) => {

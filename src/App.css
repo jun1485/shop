@@ -38,6 +38,23 @@
   width: 80%;
 }
 
+.resentView {
+  width:150px;
+  height: 40px;
+  float: right;
+  background-color: bisque;
+  color:black;
+  margin:50px;
+  margin-right: 80px;
+}
+
+.resentView-text {
+  height: 40px;
+  align-items: center;
+  display:flex;
+  justify-content: center;
+}
+
 .detailInput {
   margin-top : 40px;
 }

@@ -1,6 +1,6 @@
 import { Table } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
-import { changeTitle, changeName } from "../reduxStore"
+import { addCount, changeName, increaseAge } from "../reduxStore"
 
 function Cart() {
   // let a = useSelector((state) => { return state })
@@ -19,7 +19,11 @@ function Cart() {
       <button onClick={() => {
         dispatch(changeName())
       }}>이름 변경</button>
-
+      <button onClick={() => {
+        dispatch(increaseAge(1))
+      }}>
+        나이 1살 올리기
+      </button>
 
       <Table>
         <thead>
@@ -33,16 +37,17 @@ function Cart() {
         <tbody>
 
           {
-            basket.basket.map((name, i) => {
+            basket.cart.map((name, i) => {
               return (
                 <tr>
-                  <td>{basket.basket[i].id}</td>
-                  <td>{basket.basket[i].name}</td>
-                  <td>{basket.basket[i].count}</td>
+                  <td>{basket.cart[i].id}</td>
+                  <td>{basket.cart[i].name}</td>
+                  <td>{basket.cart[i].count}</td>
                   <td>
                     <button onClick={() => {
-                      dispatch(changeTitle());
-                    }}></button>
+                      // dispatch(basket[i].increaseCount1())
+                      dispatch(addCount(basket.cart[i].id));
+                    }}>+</button>
                   </td>
                 </tr>
               )

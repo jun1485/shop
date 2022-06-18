@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Outlet, Route } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import "../App.css";
 import "../App.js";
 
