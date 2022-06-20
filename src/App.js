@@ -7,15 +7,19 @@ import Detail from "./pages/detail.js";
 import Event from "./pages/event";
 import axios from "axios";
 import Table from "./pages/Cart"
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
   const [shoes, setShoes] = useState(data);
 
+  const basket = useSelector((state) => { return state })
+  const dispatch = useDispatch();
+
+  const lastSeenItems = (JSON.parse(localStorage.getItem('watched')))
+
   useEffect(() => {
-    localStorage.setItem('watched', JSON.stringify([]))
-  }, [])
-
-
+    if (localStorage.watched === undefined) localStorage.setItem('watched', JSON.stringify([]));
+  })
   return (
     <div className="App">
       <Navbar bg="dark" variant="dark">
@@ -35,7 +39,23 @@ function App() {
           element={<>
             <div className="shoesInfoImg">
               <div className="resentView">
-                <div className="resentView-text">as</div>
+                <div className="resentView-list">
+                  <div className="resentView-text">최근 본 상품</div>{
+                    lastSeenItems.map((a, i) => {
+                      return (
+                        <>
+                          <div className="resentView-container">
+                            <img onClick={() => {
+                              window.location.href = "/detail/" + i;
+                            }}
+                              className="resentView-img" src={basket.cart[i].source} alt='img' />
+                            <p className="resentView-title">{basket.cart[i].title}</p>
+                            <hr />
+                          </div>
+                        </>
+                      )
+                    })
+                  }</div>
               </div>
             </div>
             <div className="shoesList">
@@ -46,15 +66,14 @@ function App() {
                       <img
                         onClick={() => {
                           window.location.href = "/detail/" + i;
-                          localStorage.setItem('watched', JSON.stringify([shoes[i].id]))
                         }}
                         className="shoesImg"
                         src={name.source}
                         alt="img" />
                       <div className="col-md-4">
-                        <h4> {shoes[i].title} </h4>{" "}
+                        <h4> {shoes[i].title} </h4>
                         <p> {shoes[i].content} </p>
-                        <p> {shoes[i].price} </p>
+                        <p> {shoes[i].price}₩ </p>
                       </div>
                     </div>
                   </div>
@@ -108,8 +127,8 @@ function App() {
         }>
 
         </Route>
-      </Routes>
-    </div>
+      </Routes >
+    </div >
   );
 }
 

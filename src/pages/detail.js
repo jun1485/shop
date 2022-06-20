@@ -25,14 +25,17 @@ function Detail(props) {
     else setShowCheckError('');
   })
 
+  const [localShoes, setLocalShoes] = useState();
+
+
   useEffect(() => {
     if (localStorage.watched === undefined) localStorage.setItem('watched', JSON.stringify([]));
 
     let watchedItems = JSON.parse(localStorage.getItem('watched'));
-    watchedItems.unshift(findIdx.id);
-    watchedItems = [...new Set(watchedItems)].slice(0, 3);
+    watchedItems.push(findIdx.id);
+    watchedItems = [...new Set(watchedItems)].slice(0, 3);  // set자료형 == array 에서 중복제거
     localStorage.setItem('watched', JSON.stringify(watchedItems));
-  }, [])
+  })
 
   const dispatch = useDispatch();
   return (
