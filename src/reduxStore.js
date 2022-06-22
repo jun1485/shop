@@ -30,6 +30,7 @@ const cart = createSlice({
         content: "Born in France",
         price: 120000,
         source: "https://codingapple1.github.io/shop/shoes1.jpg",
+        count: 0,
     },
 
     {
@@ -38,6 +39,7 @@ const cart = createSlice({
         content: "Born in Seoul",
         price: 110000,
         source: "https://codingapple1.github.io/shop/shoes2.jpg",
+        count: 0,
     },
 
     {
@@ -46,11 +48,13 @@ const cart = createSlice({
         content: "Born in the States",
         price: 130000,
         source: "https://codingapple1.github.io/shop/shoes3.jpg",
+        count: 0,
     },
     ],
     reducers: {
         addCount(state, action) {
-            state.findIndex((a) => { return a.id === action.payload })
+            const countId = state.findIndex((a) => { return a.id === action.payload })
+            state[countId].count++;
         },
         addToCartState(state, action) {
             state.push(() => {

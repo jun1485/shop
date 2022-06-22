@@ -14,7 +14,7 @@ function Cart() {
 
   return (
     <>
-      {console.log({ basket })};
+      {console.log({ basket })}
       <h3>{basket.user.name} ({basket.user.age})의 장바구니</h3>
       <button onClick={() => {
         dispatch(changeName())
@@ -22,7 +22,7 @@ function Cart() {
       <button onClick={() => {
         dispatch(increaseAge(1))
       }}>
-        나이 1살 올리기
+        나이 1살 +
       </button>
 
       <Table>
@@ -41,7 +41,7 @@ function Cart() {
               return (
                 <tr>
                   <td>{basket.cart[i].id}</td>
-                  <td>{basket.cart[i].name}</td>
+                  <td>{basket.cart[i].title}</td>
                   <td>{basket.cart[i].count}</td>
                   <td>
                     <button onClick={() => {
