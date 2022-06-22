@@ -1,6 +1,6 @@
 import { Table } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
-import { addCount, changeName, increaseAge } from "../reduxStore"
+import { changeName, increaseAge } from "../reduxStore"
 
 function Cart() {
   // let a = useSelector((state) => { return state })
@@ -36,25 +36,15 @@ function Cart() {
         </thead>
         <tbody>
 
-          {
+          {/* {
             basket.cart.map((name, i) => {
               return (
-                <tr>
-                  <td>{basket.cart[i].id}</td>
-                  <td>{basket.cart[i].title}</td>
-                  <td>{basket.cart[i].count}</td>
-                  <td>
-                    <button onClick={() => {
-                      // dispatch(basket[i].increaseCount1())
-                      dispatch(addCount(basket.cart[i].id));
-                    }}>+</button>
-                  </td>
-                </tr>
+                      // dispatch(addCount(basket.cart[i].id));
               )
             })
-          }
+          } */}
           {
-            console.log(basket.productData)
+            console.log(basket.cart)
           }
         </tbody>
       </Table>

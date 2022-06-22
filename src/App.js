@@ -65,7 +65,7 @@ function App() {
                     <div className="row">
                       <img
                         onClick={() => {
-                          window.location.href = "/detail/" + i;
+                          window.location.href = "/detail/" + basket.cart[i].id;
                         }}
                         className="shoesImg"
                         src={name.source}
@@ -119,7 +119,7 @@ function App() {
         <Route path="/event" element={<Event />}>
           <Route
             path="i"
-            element={<h3>첫 주문 시 양배추즙 서비스!</h3>}
+            element={<h3>첫 `주문 시 양배추즙 서비스!</h3>}
           ></Route>
         </Route>
         <Route path="/cart" element={

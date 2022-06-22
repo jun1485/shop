@@ -57,9 +57,7 @@ const cart = createSlice({
             state[countId].count++;
         },
         addToCartState(state, action) {
-            state.push(() => {
-                return action.payload
-            })
+            state.push(action.payload)
         }
     }
 })

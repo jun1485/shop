@@ -5,11 +5,14 @@ import "../App.css";
 import "../App.js";
 import { Nav } from "react-bootstrap";
 import TabContent from "../components/TapContent";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCartState } from "../reduxStore";
 
 
 function Detail(props) {
+
+  const basket = useSelector((state) => { return state });
+
   const [showCheckError, setShowCheckError] = useState(false);
 
   const { user_id } = useParams();
@@ -25,7 +28,7 @@ function Detail(props) {
     else setShowCheckError('');
   })
 
-  const [localShoes, setLocalShoes] = useState();
+  // const [localShoes, setLocalShoes] = useState();
 
 
   useEffect(() => {
@@ -36,7 +39,6 @@ function Detail(props) {
     watchedItems = [...new Set(watchedItems)].slice(0, 3);  // set자료형 == array 에서 중복제거
     localStorage.setItem('watched', JSON.stringify(watchedItems));
   })
-
   const dispatch = useDispatch();
   return (
     <div className="container">
@@ -51,7 +53,9 @@ function Detail(props) {
           <h4 className="pt-5"> {findIdx.title} </h4> <p> {findIdx.content} </p>
           <p> {findIdx.price} </p> <Outlet> </Outlet>
           <button className="btn btn-danger" onClick={() => {
-            dispatch(addToCartState())
+            dispatch(addToCartState({
+              id: 4, name: 'new item', count: 1,
+            }))
           }
           }> 주문하기 </button>
           <button className="btn btn-danger" onClick={() => {
